@@ -59,15 +59,6 @@ install:
   - git checkout develop-3
   - python setup.py install >/dev/null
 
-  # install pyglow, space science models
-  - cd ..
-  - echo 'cloning pyglow'
-  - git clone https://github.com/timduly4/pyglow.git >/dev/null
-  - echo 'installing pyglow'
-  - cd ./pyglow
-  - make -C src/pyglow/models source >/dev/null
-  - python setup.py install >/dev/null
-
   # Install pysatMagVect after pysat
   - pip install pysatMagVect >/dev/null
 

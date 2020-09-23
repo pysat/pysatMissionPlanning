@@ -7,6 +7,8 @@ To be replaced once pysat testing techniques are finalized
 
 import datetime as dt
 import numpy as np
+import os
+
 import pysat
 
 
@@ -59,14 +61,17 @@ class TestEphem(TestSGP4):
         self.targets1 = ['glong', 'glat', 'alt', 'obs_sat_slant_range',
                          'obs_sat_az_angle', 'obs_sat_el_angle',
                          'position_ecef_x', 'position_ecef_y', 'position_ecef_z',
-                         'qd_lat', 'qd_long', 'mlt',
-                         'e_temp', 'frac_dens_h', 'frac_dens_he', 'frac_dens_o',
-                         'ion_dens', 'ion_temp',
-                         'B', 'B_east', 'B_north', 'B_up', 'B_ecef_x',
-                         'B_ecef_y', 'B_ecef_z',
-                         'Nn', 'Nn_H', 'Nn_He', 'Nn_N', 'Nn_N2', 'Nn_O', 'Nn_O2',
-                         'Nn_Ar', 'Tn_msis',
-                         'total_wind_x', 'total_wind_y', 'total_wind_z']
+                         'qd_lat', 'qd_long', 'mlt']
+        pyglow_targets = ['e_temp', 'frac_dens_h', 'frac_dens_he', 'frac_dens_o',
+                          'ion_dens', 'ion_temp',
+                          'B', 'B_east', 'B_north', 'B_up', 'B_ecef_x',
+                          'B_ecef_y', 'B_ecef_z',
+                          'Nn', 'Nn_H', 'Nn_He', 'Nn_N', 'Nn_N2', 'Nn_O', 'Nn_O2',
+                          'Nn_Ar', 'Tn_msis',
+                          'total_wind_x', 'total_wind_y', 'total_wind_z']
+        if (os.environ.get('TRAVIS') == 'false'):
+            for target in pyglow_targets:
+                self.targets.append(target)
         self.targets2 = ['velocity_ecef_x', 'velocity_ecef_y', 'velocity_ecef_z',
                          'sc_xhat_ecef_x', 'sc_xhat_ecef_y', 'sc_xhat_ecef_z',
                          'sc_yhat_ecef_x', 'sc_yhat_ecef_y', 'sc_yhat_ecef_z',

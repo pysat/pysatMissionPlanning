@@ -3,6 +3,10 @@
 
 import datetime as dt
 import numpy as np
+import os
+
+import pytest
+
 import pysat
 from pysatMissions.methods import empirical as mm_emp
 
@@ -10,6 +14,8 @@ from pysatMissions.methods import empirical as mm_emp
 class TestBasics():
     def setup(self):
         """Runs before every method to create a clean testing setup."""
+        if (os.environ.get('TRAVIS') == 'true'):
+            pytest.skip('pyglow tests skipped on Travis CI')
         self.testInst = pysat.Instrument(platform='pysat', name='testing',
                                          sat_id='100', clean_level='clean')
 
