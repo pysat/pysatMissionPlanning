@@ -34,7 +34,7 @@ install:
   - conda activate test-environment
   # Check for custom numpy version install
   - if [ -z ${NUMPY_VER} ]; then
-      conda install numpy
+      conda install numpy upgrade
     else
       conda install numpy==$NUMPY_VER;
     fi
